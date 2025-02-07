@@ -1,0 +1,234 @@
+$whiteColor: #fff;
+$priceColor: #555;
+$orangeColor: #d52017;
+$fontWeightLight: 300;
+$fontWeightMedium: 500;
+$fontWeightBold: 600;
+
+@mixin flexCenter($justify, $align) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin tablets {
+    @media screen and (max-width: 65rem) { @content;}
+}
+
+@mixin phones {
+    @media screen and (max-width: 28rem) { @content;}
+}
+
+@mixin hover {
+    @media (hover: hover) { @content;}
+}
+
+body {
+    font-family:"Lexend", Arial, sans-serif;
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: $orangeColor;
+    color: $whiteColor;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include tablets() {
+        position: sticky;
+        top: 0;
+    }
+    
+
+    &__logo {
+        height: 4rem;
+    }
+
+    &__icons {
+        width: 35px;
+        cursor: pointer;
+        display: inline-block;
+    }
+
+    &__img {
+        height: 100%;
+    }
+}
+
+.banner {
+    width: 100%;
+    padding: 5rem 0;
+    text-align: center;
+    background-image: url(../img/just-do-it-just-shield-it.gif);
+    background-size: contain;
+    color: $whiteColor;
+}
+
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    justify-content: center;
+
+    &__product {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 15px;
+        text-align: center;
+        margin: 15px;
+
+        &:hover {
+            @include hover {
+                transform: scale(1.1);
+            }
+        }
+
+        &--img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        &--title {
+            margin: 0.62rem 0;
+        }
+
+        &--price {
+            margin: 0.31rem 0;
+            color: $priceColor;
+        }
+
+        &--button {
+            background-color: $orangeColor;
+            color: $whiteColor;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            &:hover {
+                @include hover{
+                    transform: scale(1.1);
+                    background-color: #9d2019;
+                }
+            }
+        }
+    }
+}
+
+.cart {
+    width: 28rem;
+    background-color: $whiteColor;
+    padding: 25px;
+    box-sizing: border-box;
+    height: 100%;
+    position: fixed;
+    right: 100%;
+    top: 0;
+    box-shadow: -19px -1px 22px -15px rgba(0, 0, 0, 0.3);
+
+    @include phones{
+        width: 21rem;
+    }
+    
+    &.show {
+        right: 0;
+    }
+
+    &__icon {
+        cursor: pointer;
+        width: 25px;
+    }
+
+    &__title {
+        
+        font-size: 20px;
+        @include flexCenter(space-between, center);
+        padding: 25px 0;
+        text-align: center;
+    }
+  
+    &__section {
+        border-bottom: 1px solid $orangeColor;
+        @include flexCenter(space-between, center);
+        padding: 15px;
+    }
+  
+    &__img {
+        width: 60px;
+    }
+  
+    &__icons {
+        width: 25px;
+        cursor: pointer;
+  
+        &--delete {
+            width: 100%;
+        }
+    }
+  
+    &__button {
+        width: 100%;
+        height: 40px;
+        background-color: $orangeColor;
+        color: $whiteColor;
+        font-weight: $fontWeightBold;
+        cursor: pointer;
+        border: none;
+        border-radius: 3rem;
+        margin-top: .7rem;
+    }
+}
+
+
+.menu {
+    width: auto;
+    background-color: $whiteColor;
+    height: 100%;
+    position: fixed;
+    left: -50%;
+    top: 0;
+    box-shadow: 22px -10px 22px -15px rgba(0, 0, 0, 0.2);
+    padding: 5px 0;
+  
+    &.show {
+        left: 0;
+    }
+  
+    &__icon {
+        width: 25px;
+        cursor: pointer;
+
+        img {
+            width: 100%;
+        }
+
+        &--delete {
+            width: 95%;
+            cursor: pointer;
+            display: flex;
+            justify-content: end;
+        }
+    }
+  
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        padding: 20px;
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+    
+        a {
+            color: #000;
+            text-decoration: none;
+        }
+    }
+}
+
